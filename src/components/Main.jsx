@@ -1,7 +1,12 @@
 import "./Main.css";
+import OptionControls from "./OptionControls";
 
 const Main = () => {
-  return <div>Main</div>;
+  return (
+    <div>
+      <OptionControls />
+    </div>
+  );
 };
 
 export default Main;
