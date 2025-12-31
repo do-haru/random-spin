@@ -1,12 +1,19 @@
 import "./Roulette.css";
 
+// SVG 크기
 const SIZE = 320;
+
+// 원의 중심 좌표
 const CX = SIZE / 2;
 const CY = SIZE / 2;
+
+// 룰렛 반지름
 const R = 150;
 
+// 시작 각도
 const OFFSET_DEG = -90;
 
+// 부채꼴 색상
 const COLORS = [
   "#C62828", // Option 1 - 레드
   "#FB8C00", // Option 2 - 오렌지
@@ -31,7 +38,7 @@ const OPTIONS = [
 ];
 
 // 각도(deg) + 반지름을 (x,y)로 변환
-const polarToCartesian = (cx, cy, r, deg) => {
+const getPointOnCircle = (cx, cy, r, deg) => {
   const rad = (deg * Math.PI) / 180;
   return {
     x: cx + r * Math.cos(rad),
@@ -40,9 +47,9 @@ const polarToCartesian = (cx, cy, r, deg) => {
 };
 
 // 부채꼴(섹터) path 생성 (중심 -> 호 시작점 -> 호 끝점 -> 중심)
-const getSectorPath = (cx, cy, r, startDeg, endDeg) => {
-  const start = polarToCartesian(cx, cy, r, startDeg);
-  const end = polarToCartesian(cx, cy, r, endDeg);
+const createSectorPath = (cx, cy, r, startDeg, endDeg) => {
+  const start = getPointOnCircle(cx, cy, r, startDeg);
+  const end = getPointOnCircle(cx, cy, r, endDeg);
 
   const largeArcFlag = endDeg - startDeg > 180 ? 1 : 0;
 
@@ -55,30 +62,30 @@ const getSectorPath = (cx, cy, r, startDeg, endDeg) => {
 };
 
 // 텍스트 위치 계산
-const getTextPosition = (cx, cy, r, startDeg, endDeg) => {
+const getTextPoint = (cx, cy, r, startDeg, endDeg) => {
   const midDeg = (startDeg + endDeg) / 2;
   const textR = r * 0.65; // 텍스트를 원 중심 쪽으로 당김
 
-  return polarToCartesian(cx, cy, textR, midDeg);
+  return getPointOnCircle(cx, cy, textR, midDeg);
 };
 
 const Roulette = () => {
-  const n = COLORS.length;
-  const step = 360 / n;
+  const n = COLORS.length; // 부채꼴 갯수
+  const step = 360 / n; // 한 칸의 각도
 
   return (
     <div>
       <svg width={SIZE} height={SIZE} viewBox={`0 0 ${SIZE} ${SIZE}`}>
         <g>
           {COLORS.map((color, i) => {
-            const startDeg = OFFSET_DEG + i * step;
-            const endDeg = OFFSET_DEG + (i + 1) * step;
-            const { x, y } = getTextPosition(CX, CY, R, startDeg, endDeg);
+            const startDeg = OFFSET_DEG + i * step; // 부채꼴 시작 각도
+            const endDeg = OFFSET_DEG + (i + 1) * step; // 부채꼴 끝 각도
+            const { x, y } = getTextPoint(CX, CY, R, startDeg, endDeg); // 텍스트 위치
 
             return (
               <g key={i}>
                 <path
-                  d={getSectorPath(CX, CY, R, startDeg, endDeg)}
+                  d={createSectorPath(CX, CY, R, startDeg, endDeg)}
                   fill={color}
                 />
                 <text
