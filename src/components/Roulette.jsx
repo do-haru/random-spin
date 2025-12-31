@@ -25,18 +25,6 @@ const COLORS = [
   "#FF375F", // Option 8 - 핑크레드
 ];
 
-// Option 텍스트
-const OPTIONS = [
-  "Option 1",
-  "Option 2",
-  "Option 3",
-  "Option 4",
-  "Option 5",
-  "Option 6",
-  "Option 7",
-  "Option 8",
-];
-
 // 각도(deg) + 반지름을 (x,y)로 변환
 const getPointOnCircle = (cx, cy, r, deg) => {
   const rad = (deg * Math.PI) / 180;
@@ -69,7 +57,7 @@ const getTextPoint = (cx, cy, r, startDeg, endDeg) => {
   return getPointOnCircle(cx, cy, textR, midDeg);
 };
 
-const Roulette = ({ rotationDeg }) => {
+const Roulette = ({ rotationDeg, options, onChangeOption }) => {
   const n = COLORS.length; // 부채꼴 갯수
   const step = 360 / n; // 한 칸의 각도
 
@@ -102,8 +90,17 @@ const Roulette = ({ rotationDeg }) => {
                   fontSize="14"
                   fill="#222"
                 >
-                  {OPTIONS[i]}
+                  {options[i]}
                 </text>
+
+                <foreignObject x={x - 35} y={y - 12} width={70} height={24}>
+                  <input
+                    className="wheelOptionInput"
+                    type="text"
+                    value={options[i]}
+                    onChange={(e) => onChangeOption(i, e.target.value)}
+                  />
+                </foreignObject>
               </g>
             );
           })}
