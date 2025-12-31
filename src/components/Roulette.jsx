@@ -69,14 +69,20 @@ const getTextPoint = (cx, cy, r, startDeg, endDeg) => {
   return getPointOnCircle(cx, cy, textR, midDeg);
 };
 
-const Roulette = () => {
+const Roulette = ({ rotationDeg }) => {
   const n = COLORS.length; // 부채꼴 갯수
   const step = 360 / n; // 한 칸의 각도
 
   return (
     <div>
       <svg width={SIZE} height={SIZE} viewBox={`0 -20 ${SIZE} ${SIZE + 20}`}>
-        <g>
+        <g
+          className="wheel"
+          style={{
+            transform: `rotate(${rotationDeg}deg)`,
+            transformOrigin: `${CX}px ${CY}px`,
+          }}
+        >
           {COLORS.map((color, i) => {
             const startDeg = OFFSET_DEG + i * step; // 부채꼴 시작 각도
             const endDeg = OFFSET_DEG + (i + 1) * step; // 부채꼴 끝 각도
@@ -112,16 +118,15 @@ const Roulette = () => {
           />
 
           <circle cx="160" cy="160" r="3" fill="black" />
-
-          <polygon
-            points={`${CX},${CY - R - 4} ${CX - 8},${CY - R - 18} ${CX + 8},${
-              CY - R - 18
-            }`}
-            fill="#B71C1C"
-            stroke="#B71C1C"
-            strokeWidth="2"
-          />
         </g>
+        <polygon
+          points={`${CX},${CY - R - 4} ${CX - 8},${CY - R - 18} ${CX + 8},${
+            CY - R - 18
+          }`}
+          fill="#B71C1C"
+          stroke="#B71C1C"
+          strokeWidth="2"
+        />
       </svg>
     </div>
   );

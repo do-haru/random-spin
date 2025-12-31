@@ -1,9 +1,11 @@
 import "./SpinControls.css";
 
-const SpinControls = () => {
+const SpinControls = ({ onSpin }) => {
   return (
     <div>
-      <button type="button">돌리기</button>
+      <button type="button" onClick={onSpin}>
+        돌리기
+      </button>
     </div>
   );
 };
