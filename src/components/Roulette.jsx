@@ -18,6 +18,18 @@ const COLORS = [
   "#FF375F", // Option 8 - 핑크레드
 ];
 
+// Option 텍스트
+const OPTIONS = [
+  "Option 1",
+  "Option 2",
+  "Option 3",
+  "Option 4",
+  "Option 5",
+  "Option 6",
+  "Option 7",
+  "Option 8",
+];
+
 // 각도(deg) + 반지름을 (x,y)로 변환
 const polarToCartesian = (cx, cy, r, deg) => {
   const rad = (deg * Math.PI) / 180;
@@ -42,6 +54,14 @@ const getSectorPath = (cx, cy, r, startDeg, endDeg) => {
   ].join(" ");
 };
 
+// 텍스트 위치 계산
+const getTextPosition = (cx, cy, r, startDeg, endDeg) => {
+  const midDeg = (startDeg + endDeg) / 2;
+  const textR = r * 0.65; // 텍스트를 원 중심 쪽으로 당김
+
+  return polarToCartesian(cx, cy, textR, midDeg);
+};
+
 const Roulette = () => {
   const n = COLORS.length;
   const step = 360 / n;
@@ -53,13 +73,25 @@ const Roulette = () => {
           {COLORS.map((color, i) => {
             const startDeg = OFFSET_DEG + i * step;
             const endDeg = OFFSET_DEG + (i + 1) * step;
+            const { x, y } = getTextPosition(CX, CY, R, startDeg, endDeg);
 
             return (
-              <path
-                key={i}
-                d={getSectorPath(CX, CY, R, startDeg, endDeg)}
-                fill={color}
-              />
+              <g key={i}>
+                <path
+                  d={getSectorPath(CX, CY, R, startDeg, endDeg)}
+                  fill={color}
+                />
+                <text
+                  x={x}
+                  y={y}
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  fontSize="14"
+                  fill="#222"
+                >
+                  {OPTIONS[i]}
+                </text>
+              </g>
             );
           })}
 
