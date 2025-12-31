@@ -75,7 +75,7 @@ const Roulette = () => {
 
   return (
     <div>
-      <svg width={SIZE} height={SIZE} viewBox={`0 0 ${SIZE} ${SIZE}`}>
+      <svg width={SIZE} height={SIZE} viewBox={`0 -20 ${SIZE} ${SIZE + 20}`}>
         <g>
           {COLORS.map((color, i) => {
             const startDeg = OFFSET_DEG + i * step; // 부채꼴 시작 각도
@@ -112,6 +112,15 @@ const Roulette = () => {
           />
 
           <circle cx="160" cy="160" r="3" fill="black" />
+
+          <polygon
+            points={`${CX},${CY - R - 4} ${CX - 8},${CY - R - 18} ${CX + 8},${
+              CY - R - 18
+            }`}
+            fill="#B71C1C"
+            stroke="#B71C1C"
+            strokeWidth="2"
+          />
         </g>
       </svg>
     </div>
