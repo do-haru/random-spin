@@ -15,6 +15,14 @@ const DEFAULT_OPTIONS = Array.from(
   (_, i) => `Option ${i + 1}`
 );
 
+const RESULT_MESSAGES = [
+  "운명이 이걸 골랐어요!",
+  "오늘은 이 선택이 딱이에요 🙂",
+  "고민 끝! 이걸로 가죠.",
+  "랜덤의 신이 선택했어요.",
+  "이건 꽤 괜찮은 결과예요!",
+];
+
 // 회전 각도로 결과 인덱스 계산
 const getResultIndex = (rotationDeg, n) => {
   const step = 360 / n;
@@ -37,7 +45,7 @@ const RouletteContainer = () => {
   // 결과 인덱스
   const [resultIndex, setResultIndex] = useState(null);
   // 결과 텍스트
-  const [resultText, setResultText] = useState("");
+  const [resultText, setResultText] = useState(null);
   // 결과 창 표시
   const [showResult, setShowResult] = useState(false);
 
@@ -90,8 +98,12 @@ const RouletteContainer = () => {
   const handleSpinEnd = () => {
     setIsSpinning(false);
     if (resultIndex === null) return;
-    const text = activeOptions[resultIndex] ?? "";
-    setResultText(text);
+
+    const option = activeOptions[resultIndex] ?? "";
+    const message =
+      RESULT_MESSAGES[Math.floor(Math.random() * RESULT_MESSAGES.length)];
+
+    setResultText({ option, message });
     setShowResult(true);
     setResultIndex(null);
   };
@@ -115,15 +127,20 @@ const RouletteContainer = () => {
       />
       <SpinControls onSpin={handleSpin} disabled={isSpinning} />
 
-      {showResult && (
-        <div className="resultToast" role="dialog" aria-live="polite">
+      {showResult && resultText && (
+        <div className="resultToast">
           <div className="resultToastTitle">결과</div>
-          <div className="resultToastValue">{resultText || "(빈 값)"}</div>
+
+          {/* 결과 옵션 */}
+          <div className="resultToastValue">{resultText.option}</div>
+
+          {/* 랜덤 문구 */}
+          <div className="resultToastMessage">{resultText.message}</div>
+
           <button
             type="button"
             className="resultToastClose"
             onClick={() => setShowResult(false)}
-            aria-label="닫기"
           >
             ×
           </button>
