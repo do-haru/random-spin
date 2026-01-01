@@ -41,6 +41,9 @@ const RouletteContainer = () => {
   // 결과 창 표시
   const [showResult, setShowResult] = useState(false);
 
+  // 결과창을 닫기 전까지 input 숨김
+  const isEditingDisabled = isSpinning || showResult;
+
   // 룰렛 회전
   const handleSpin = () => {
     if (isSpinning) return;
@@ -108,6 +111,7 @@ const RouletteContainer = () => {
         options={activeOptions}
         onChangeOption={handleChangeOption}
         onSpinEnd={handleSpinEnd}
+        isEditingDisabled={isEditingDisabled}
       />
       <SpinControls onSpin={handleSpin} disabled={isSpinning} />
 

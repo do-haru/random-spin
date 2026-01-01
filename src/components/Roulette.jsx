@@ -57,7 +57,13 @@ const getTextPoint = (cx, cy, r, startDeg, endDeg) => {
   return getPointOnCircle(cx, cy, textR, midDeg);
 };
 
-const Roulette = ({ rotationDeg, options, onChangeOption, onSpinEnd }) => {
+const Roulette = ({
+  rotationDeg,
+  options,
+  onChangeOption,
+  onSpinEnd,
+  isEditingDisabled,
+}) => {
   const n = options.length; // 부채꼴 갯수
   const step = 360 / n; // 한 칸의 각도
 
@@ -94,11 +100,18 @@ const Roulette = ({ rotationDeg, options, onChangeOption, onSpinEnd }) => {
                   dominantBaseline="middle"
                   fontSize="14"
                   fill="#222"
+                  style={{ display: isEditingDisabled ? "block" : "none" }}
                 >
                   {options[i]}
                 </text>
 
-                <foreignObject x={x - 35} y={y - 12} width={70} height={24}>
+                <foreignObject
+                  x={x - 35}
+                  y={y - 12}
+                  width={70}
+                  height={24}
+                  style={{ display: isEditingDisabled ? "none" : "block" }}
+                >
                   <input
                     className="wheelOptionInput"
                     type="text"
