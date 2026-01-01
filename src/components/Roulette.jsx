@@ -57,7 +57,7 @@ const getTextPoint = (cx, cy, r, startDeg, endDeg) => {
   return getPointOnCircle(cx, cy, textR, midDeg);
 };
 
-const Roulette = ({ rotationDeg, options, onChangeOption }) => {
+const Roulette = ({ rotationDeg, options, onChangeOption, onSpinEnd }) => {
   const n = options.length; // 부채꼴 갯수
   const step = 360 / n; // 한 칸의 각도
 
@@ -69,6 +69,11 @@ const Roulette = ({ rotationDeg, options, onChangeOption }) => {
           style={{
             transform: `rotate(${rotationDeg}deg)`,
             transformOrigin: `${CX}px ${CY}px`,
+          }}
+          onTransitionEnd={(e) => {
+            // ✅ ADD: wheel 그룹에서만 종료 이벤트 처리
+            if (e.target !== e.currentTarget) return;
+            onSpinEnd?.();
           }}
         >
           {COLORS.slice(0, n).map((color, i) => {
