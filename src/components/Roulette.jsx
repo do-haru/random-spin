@@ -58,7 +58,7 @@ const getTextPoint = (cx, cy, r, startDeg, endDeg) => {
 };
 
 const Roulette = ({ rotationDeg, options, onChangeOption }) => {
-  const n = COLORS.length; // 부채꼴 갯수
+  const n = options.length; // 부채꼴 갯수
   const step = 360 / n; // 한 칸의 각도
 
   return (
@@ -71,7 +71,7 @@ const Roulette = ({ rotationDeg, options, onChangeOption }) => {
             transformOrigin: `${CX}px ${CY}px`,
           }}
         >
-          {COLORS.map((color, i) => {
+          {COLORS.slice(0, n).map((color, i) => {
             const startDeg = OFFSET_DEG + i * step; // 부채꼴 시작 각도
             const endDeg = OFFSET_DEG + (i + 1) * step; // 부채꼴 끝 각도
             const { x, y } = getTextPoint(CX, CY, R, startDeg, endDeg); // 텍스트 위치
@@ -106,15 +106,15 @@ const Roulette = ({ rotationDeg, options, onChangeOption }) => {
           })}
 
           <circle
-            cx="160"
-            cy="160"
-            r="150"
+            cx={CX}
+            cy={CY}
+            r={R}
             fill="none"
             stroke="black"
             strokeWidth="2"
           />
 
-          <circle cx="160" cy="160" r="3" fill="black" />
+          <circle cx={CX} cy={CY} r="3" fill="black" />
         </g>
         <polygon
           points={`${CX},${CY - R - 4} ${CX - 8},${CY - R - 18} ${CX + 8},${

@@ -1,21 +1,19 @@
 import "./RouletteContainer.css";
 
+import OptionControls from "./OptionControls";
 import Roulette from "./Roulette";
 import SpinControls from "./SpinControls";
 
 import { useState } from "react";
 
+const MIN = 2;
+const MAX = 8;
+
 // 기본 Option 텍스트
-const DEFAULT_OPTIONS = [
-  "Option 1",
-  "Option 2",
-  "Option 3",
-  "Option 4",
-  "Option 5",
-  "Option 6",
-  "Option 7",
-  "Option 8",
-];
+const DEFAULT_OPTIONS = Array.from(
+  { length: MAX },
+  (_, i) => `Option ${i + 1}`
+);
 
 const RouletteContainer = () => {
   // 현재 룰렛의 회전 각도
@@ -24,6 +22,10 @@ const RouletteContainer = () => {
   // Option 텍스트 state
   const [options, setOptions] = useState(DEFAULT_OPTIONS);
 
+  // Option의 갯수
+  const [optionCount, setOptionCount] = useState(6);
+
+  // 룰렛 회전
   const handleSpin = () => {
     const extraTurns = 4;
     const randomDeg = Math.random() * 360;
@@ -39,11 +41,35 @@ const RouletteContainer = () => {
     });
   };
 
+  // Option 갯수 감소
+  const handleDecreaseOptionCount = () =>
+    setOptionCount((c) => Math.max(MIN, c - 1));
+  // Option 갯수 증가
+  const handleIncreaseOptionCount = () =>
+    setOptionCount((c) => Math.min(MAX, c + 1));
+  // Option 갯수 초기화
+  const handleResetOptionCount = () => {
+    setOptionCount(6);
+    setOptions(DEFAULT_OPTIONS);
+    setRotationDeg(0);
+  };
+
+  // 사용중인 옵션
+  const activeOptions = options.slice(0, optionCount);
+
   return (
     <div>
+      <OptionControls
+        count={optionCount}
+        min={MIN}
+        max={MAX}
+        onDec={handleDecreaseOptionCount}
+        onInc={handleIncreaseOptionCount}
+        onReset={handleResetOptionCount}
+      />
       <Roulette
         rotationDeg={rotationDeg}
-        options={options}
+        options={activeOptions}
         onChangeOption={handleChangeOption}
       />
       <SpinControls onSpin={handleSpin} />

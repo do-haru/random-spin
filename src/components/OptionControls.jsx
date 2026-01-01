@@ -1,13 +1,19 @@
 import "./OptionControls.css";
 
-const OptionControls = () => {
+const OptionControls = ({ count, min = 2, max = 8, onDec, onInc, onReset }) => {
   return (
     <div>
-      <button type="button">-</button>
-      <span>4개</span>
-      <button type="button">+</button>
+      <button type="button" onClick={onDec} disabled={count <= min}>
+        -
+      </button>
+      <span>{count}개</span>
+      <button type="button" onClick={onInc} disabled={count >= max}>
+        +
+      </button>
 
-      <button type="button">재설정</button>
+      <button type="button" onClick={onReset}>
+        재설정
+      </button>
     </div>
   );
 };
