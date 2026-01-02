@@ -6,15 +6,14 @@ import SpinControls from "./SpinControls";
 
 import { useState } from "react";
 
+// Option 최대/최소 개수
 const MIN = 2;
 const MAX = 8;
 
-// 기본 Option 텍스트
-const DEFAULT_OPTIONS = Array.from(
-  { length: MAX },
-  (_, i) => `Option ${i + 1}`
-);
+// 기본 Option
+const DEFAULT_OPTIONS = Array.from({ length: MAX }, (_, i) => `${i + 1}`);
 
+// 결과 랜덤 메세지
 const RESULT_MESSAGES = [
   "운명이 이걸 골랐어요!",
   "오늘은 이 선택이 딱이에요 🙂",
@@ -23,7 +22,7 @@ const RESULT_MESSAGES = [
   "이건 꽤 괜찮은 결과예요!",
 ];
 
-// 회전 각도로 결과 인덱스 계산
+// 회전 각도 -> 결과 인덱스 계산
 const getResultIndex = (rotationDeg, n) => {
   const step = 360 / n;
   const normalized = ((-rotationDeg % 360) + 360) % 360; // 0~359
@@ -31,26 +30,20 @@ const getResultIndex = (rotationDeg, n) => {
 };
 
 const RouletteContainer = () => {
-  // 현재 룰렛의 회전 각도
-  const [rotationDeg, setRotationDeg] = useState(0);
+  const [options, setOptions] = useState(DEFAULT_OPTIONS); // Option 배열
+  const [optionCount, setOptionCount] = useState(6); // Option 개수
+  const activeOptions = options.slice(0, optionCount); // 사용 중 Option 배열
 
-  // Option 텍스트 state
-  const [options, setOptions] = useState(DEFAULT_OPTIONS);
+  const [rotationDeg, setRotationDeg] = useState(0); // 룰렛 회전 각도
+  const [isSpinning, setIsSpinning] = useState(false); // 회전 중 여부
 
-  // Option의 갯수
-  const [optionCount, setOptionCount] = useState(6);
+  const [resultIndex, setResultIndex] = useState(null); // Result 인덱스
+  const [result, setResult] = useState(null); // Roulette Result
 
-  // 회전 여부
-  const [isSpinning, setIsSpinning] = useState(false);
-  // 결과 인덱스
-  const [resultIndex, setResultIndex] = useState(null);
-  // 결과 텍스트
-  const [resultText, setResultText] = useState(null);
-  // 결과 창 표시
-  const [showResult, setShowResult] = useState(false);
+  const [showResult, setShowResult] = useState(false); // 결과 창 표시 여부
 
-  // 결과창을 닫기 전까지 input 숨김
-  const isEditingDisabled = isSpinning || showResult;
+  // OptionControls, SpinningControls 비활성화 조건 (회전 중이거나 결과창이 떠있을 경우)
+  const isOptionChangeDisabled = isSpinning || showResult;
 
   // 룰렛 회전
   const handleSpin = () => {
@@ -69,7 +62,7 @@ const RouletteContainer = () => {
     });
   };
 
-  // i번째 옵션 변경
+  // i번째 Option 변경
   const handleChangeOption = (index, value) => {
     setOptions((prev) => {
       const next = [...prev];
@@ -78,23 +71,23 @@ const RouletteContainer = () => {
     });
   };
 
-  // Option 갯수 감소
+  // Option 개수 감소
   const handleDecreaseOptionCount = () =>
     setOptionCount((c) => Math.max(MIN, c - 1));
-  // Option 갯수 증가
+
+  // Option 개수 증가
+
   const handleIncreaseOptionCount = () =>
     setOptionCount((c) => Math.min(MAX, c + 1));
-  // Option 갯수 초기화
+
+  // Option 개수 초기화
   const handleResetOptionCount = () => {
     setOptionCount(6);
     setOptions(DEFAULT_OPTIONS);
     setRotationDeg(0);
   };
 
-  // 사용중인 옵션
-  const activeOptions = options.slice(0, optionCount);
-
-  // 회전 종료 시점에 결과 창 띄우기
+  // 회전 종료 시 결과 처리
   const handleSpinEnd = () => {
     setIsSpinning(false);
     if (resultIndex === null) return;
@@ -103,7 +96,7 @@ const RouletteContainer = () => {
     const message =
       RESULT_MESSAGES[Math.floor(Math.random() * RESULT_MESSAGES.length)];
 
-    setResultText({ option, message });
+    setResult({ option, message });
     setShowResult(true);
     setResultIndex(null);
   };
@@ -117,26 +110,26 @@ const RouletteContainer = () => {
         onDec={handleDecreaseOptionCount}
         onInc={handleIncreaseOptionCount}
         onReset={handleResetOptionCount}
-        disabled={isEditingDisabled}
+        disabled={isOptionChangeDisabled}
       />
       <Roulette
         rotationDeg={rotationDeg}
         options={activeOptions}
         onChangeOption={handleChangeOption}
         onSpinEnd={handleSpinEnd}
-        isEditingDisabled={isEditingDisabled}
+        isEditingDisabled={isOptionChangeDisabled}
       />
       <SpinControls onSpin={handleSpin} disabled={isSpinning} />
 
-      {showResult && resultText && (
+      {showResult && result && (
         <div className="resultToast">
           <div className="resultToastTitle">결과</div>
 
           {/* 결과 옵션 */}
-          <div className="resultToastValue">{resultText.option}</div>
+          <div className="resultToastValue">{result.option}</div>
 
           {/* 랜덤 문구 */}
-          <div className="resultToastMessage">{resultText.message}</div>
+          <div className="resultToastMessage">{result.message}</div>
 
           <button
             type="button"
