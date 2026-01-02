@@ -117,6 +117,7 @@ const RouletteContainer = () => {
         onDec={handleDecreaseOptionCount}
         onInc={handleIncreaseOptionCount}
         onReset={handleResetOptionCount}
+        disabled={isEditingDisabled}
       />
       <Roulette
         rotationDeg={rotationDeg}
