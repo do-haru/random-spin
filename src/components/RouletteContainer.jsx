@@ -3,6 +3,7 @@ import "./RouletteContainer.css";
 import OptionControls from "./OptionControls";
 import Roulette from "./Roulette";
 import SpinControls from "./SpinControls";
+import { ROULETTE_RESULT_MESSAGES } from "../constants/rouletteMessages";
 
 import { useState } from "react";
 
@@ -94,7 +95,9 @@ const RouletteContainer = () => {
 
     const option = activeOptions[resultIndex] ?? "";
     const message =
-      RESULT_MESSAGES[Math.floor(Math.random() * RESULT_MESSAGES.length)];
+      ROULETTE_RESULT_MESSAGES[
+        Math.floor(Math.random() * ROULETTE_RESULT_MESSAGES.length)
+      ];
 
     setResult({ option, message });
     setShowResult(true);
