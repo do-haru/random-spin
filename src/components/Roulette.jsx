@@ -15,14 +15,14 @@ const OFFSET_DEG = -90;
 
 // 부채꼴 색상
 const COLORS = [
-  "#C62828", // Option 1 - 레드
-  "#FB8C00", // Option 2 - 오렌지
-  "#FDD835", // Option 3 - 옐로우
+  "#C32323", // Option 1 - 레드
+  "#FF8D28", // Option 2 - 오렌지
+  "#FFCC00", // Option 3 - 옐로우
   "#34C759", // Option 4 - 그린
-  "#00BFC4", // Option 5 - 민트
-  "#1E88E5", // Option 6 - 블루
-  "#5E5CE6", // Option 7 - 퍼플블루
-  "#FF375F", // Option 8 - 핑크레드
+  "#00C3D0", // Option 5 - 민트
+  "#0088FF", // Option 6 - 블루
+  "#6155F5", // Option 7 - 퍼플블루
+  "#FF2D55", // Option 8 - 핑크레드
 ];
 
 // 각도(deg) + 반지름을 (x,y)로 변환
@@ -68,8 +68,19 @@ const Roulette = ({
   const step = 360 / n; // 한 칸의 각도
 
   return (
-    <div>
-      <svg width={SIZE} height={SIZE} viewBox={`0 -20 ${SIZE} ${SIZE + 20}`}>
+    <div className="Roulette">
+      <div className="roulettePointer">
+        <svg width="20" height="15" viewBox="0 0 24 18">
+          <polygon points="0,0 24,0 12,18" fill="#B71C1C" />
+        </svg>
+      </div>
+
+      <svg
+        className="rouletteWheel"
+        width={SIZE}
+        height={SIZE}
+        viewBox={`0 0 ${SIZE} ${SIZE}`}
+      >
         <g
           className="wheel"
           style={{
@@ -94,12 +105,11 @@ const Roulette = ({
                   fill={color}
                 />
                 <text
+                  className="wheelOptionText"
                   x={x}
                   y={y}
                   textAnchor="middle"
                   dominantBaseline="middle"
-                  fontSize="14"
-                  fill="#222"
                   style={{ display: isEditingDisabled ? "block" : "none" }}
                 >
                   {options[i]}
@@ -134,14 +144,6 @@ const Roulette = ({
 
           <circle cx={CX} cy={CY} r="3" fill="black" />
         </g>
-        <polygon
-          points={`${CX},${CY - R - 4} ${CX - 8},${CY - R - 18} ${CX + 8},${
-            CY - R - 18
-          }`}
-          fill="#B71C1C"
-          stroke="#B71C1C"
-          strokeWidth="2"
-        />
       </svg>
     </div>
   );

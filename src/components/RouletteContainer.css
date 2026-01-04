@@ -1,3 +1,15 @@
+.RouletteContainer {
+  /* 크기 */
+  width: 100%;
+  max-width: 520px;
+
+  /* 배치 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
 .resultToast {
   position: fixed;
   top: 16px;

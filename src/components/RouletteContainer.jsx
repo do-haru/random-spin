@@ -105,7 +105,7 @@ const RouletteContainer = () => {
   };
 
   return (
-    <div>
+    <div className="RouletteContainer">
       <OptionControls
         count={optionCount}
         min={MIN}

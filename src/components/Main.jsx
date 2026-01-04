@@ -3,7 +3,7 @@ import RouletteContainer from "./RouletteContainer";
 
 const Main = () => {
   return (
-    <div>
+    <div className="Main">
       <RouletteContainer />
     </div>
   );

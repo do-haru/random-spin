@@ -1,0 +1,16 @@
+.Main {
+  /* 크기 */
+  width: 100%;
+
+  /* 배치 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .Main {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}

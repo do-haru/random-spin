@@ -1,0 +1,56 @@
+.SpinControls {
+  /* 배치 */
+  display: flex;
+  justify-content: center;
+
+  /* 크기 */
+  width: 100%;
+}
+
+.spinBtn {
+  /* 크기 */
+  height: 36px;
+  padding: 0 18px;
+
+  /* 배경 */
+  border: none;
+  background-color: #e5e7eb;
+  border-radius: 10px;
+
+  /* 글자 */
+  font: inherit;
+  font-size: 18px;
+
+  /* 커서 */
+  cursor: pointer;
+
+  /* 요소 배치 */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2px;
+
+  /* 기타 */
+  user-select: none; /* 드래그 방지 */
+}
+
+.spinBtn:hover {
+  /* 배경 */
+  background: #d1d5db;
+}
+
+.spinBtn:active {
+  /* 액션 */
+  transform: translateY(1px);
+}
+
+.spinBtn:disabled {
+  /* 배경 */
+  background: #f1f1f1;
+
+  /* 글자 */
+  color: #9ca3af;
+
+  /* 커서 */
+  cursor: none;
+}

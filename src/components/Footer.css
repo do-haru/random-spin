@@ -1,0 +1,88 @@
+.Footer {
+  /* 크기 */
+  width: 100%;
+
+  padding: 40px 0 40px 0;
+
+  /* 배치 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  /* 배경 */
+  border-top: 1px solid #cdd0d7;
+
+  /* 글자 */
+  color: #6b7280;
+  font-size: 12px;
+  line-height: 1;
+}
+
+/* 사이트 이름 */
+.Footer > p:first-child {
+  /* 글자 */
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+
+  /* 배치 */
+  margin: 0 0 8px 0;
+}
+
+.Footer > p:nth-child(2) {
+  /* 배치 */
+  margin: 0 0 6px 0;
+}
+
+.footer-meta {
+  /* 배치 */
+  margin-bottom: 6px;
+
+  /* 요소 배치 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 6px 0;
+}
+
+.footer-meta a {
+  /* 글자 */
+  color: #6b7280;
+  text-decoration: none;
+}
+
+.footer-divider {
+  /* 글자 */
+  color: #6b7280;
+}
+
+.footer-version {
+  /* 글자 */
+  color: #6b7280;
+}
+
+.footer-email {
+  /* 배치 */
+  margin: 0;
+}
+
+.footer-font {
+  margin: 0;
+  margin-top: 10px;
+
+  font-size: 8px;
+
+  color: #9ca3af; /* 가장 연한 톤 */
+}
+@media (max-width: 420px) {
+  .Footer {
+    font-size: 10px;
+  }
+
+  .Footer > p:first-child {
+    /* 글자 */
+    font-size: 12px;
+  }
+}

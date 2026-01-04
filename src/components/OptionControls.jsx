@@ -10,16 +10,33 @@ const OptionControls = ({
   disabled = false,
 }) => {
   return (
-    <div>
-      <button type="button" onClick={onDec} disabled={disabled || count <= min}>
-        -
-      </button>
-      <span>{count}개</span>
-      <button type="button" onClick={onInc} disabled={disabled || count >= max}>
-        +
-      </button>
+    <div className="OptionControls">
+      <div className="optionCountControls">
+        <button
+          className="optionBtn"
+          type="button"
+          onClick={onDec}
+          disabled={disabled || count <= min}
+        >
+          -
+        </button>
+        <span className="optionCountText">{count}개</span>
+        <button
+          className="optionBtn"
+          type="button"
+          onClick={onInc}
+          disabled={disabled || count >= max}
+        >
+          +
+        </button>
+      </div>
 
-      <button type="button" onClick={onReset} disabled={disabled}>
+      <button
+        className="optionResetBtn"
+        type="button"
+        onClick={onReset}
+        disabled={disabled}
+      >
         재설정
       </button>
     </div>

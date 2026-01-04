@@ -1,0 +1,131 @@
+.OptionControls {
+  /* 크기 */
+  width: 100%;
+  max-width: 560px;
+
+  /* 배치 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.optionCountControls {
+  /* 배치 */
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.optionBtn {
+  /* 크기 */
+  width: 24px;
+  height: 24px;
+
+  /* 배경 */
+  border: none;
+  background-color: #e5e7eb;
+
+  /* 요소 배치 */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* 글자 */
+  color: #111827;
+  font: inherit;
+  font-size: 13px;
+
+  /* 커서 */
+  cursor: pointer;
+
+  /* 기타 */
+  user-select: none; /* 드래그 방지 */
+}
+
+.optionBtn:hover {
+  /* 배경 */
+  background: #d4d6dd;
+}
+
+.optionBtn:active {
+  /* 액션 */
+  transform: translateY(1px);
+}
+
+.optionBtn:disabled {
+  /* 배경 */
+  background: #f1f1f1;
+
+  /* 글자 */
+  color: #9ca3af;
+
+  /* 커서 */
+  cursor: default;
+
+  /* 액션 */
+  transform: none;
+}
+
+.optionCountText {
+  /* 크기 */
+  width: 34px;
+
+  /* 글자 */
+  font-size: 13px;
+  color: #111827;
+
+  /* 요소 배치 */
+  text-align: center;
+
+  /* 기타 */
+  user-select: none; /* 드래그 방지 */
+}
+
+.optionResetBtn {
+  /* 크기 */
+  height: 24px;
+
+  /* 배경 */
+  border: none;
+  background-color: #e5e7eb;
+
+  /* 글자 */
+  color: #111827;
+  font: inherit;
+  font-size: 13px;
+
+  /* 커서 */
+  cursor: pointer;
+
+  /* 요소 배치 */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  padding-top: 1px;
+
+  /* 기타 */
+  user-select: none; /* 드래그 방지 */
+}
+
+.optionResetBtn:hover {
+  /* 배경 */
+  background: #d4d6dd;
+}
+
+.optionResetBtn:active {
+  /* 액션 */
+  transform: translateY(1px);
+}
+
+.optionResetBtn:disabled {
+  /* 배경 */
+  background: #f1f1f1;
+
+  /* 글자 */
+  color: #9ca3af;
+
+  /* 커서 */
+  cursor: default;
+}
