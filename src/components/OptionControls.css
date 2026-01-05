@@ -128,4 +128,7 @@
 
   /* 커서 */
   cursor: default;
+
+  /* 액션 */
+  transform: none;
 }
