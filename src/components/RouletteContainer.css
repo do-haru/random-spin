@@ -11,16 +11,21 @@
 }
 
 .resultToast {
+  /* 배치 */
   position: fixed;
   top: 16px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 9999;
 
+  /* 크기 */
   min-width: 220px;
   max-width: 320px;
+
+  /* 요소 배치 */
   padding: 12px 40px 12px 14px;
 
+  /* 배경 */
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 12px;
@@ -28,32 +33,47 @@
 }
 
 .resultToastTitle {
+  /* 글자 */
   font-size: 12px;
   color: rgba(0, 0, 0, 0.6);
+
+  /* 배치 */
   margin-bottom: 4px;
 }
 
 .resultToastValue {
+  /* 글자 */
   font-size: 16px;
   font-weight: 700;
   color: #111;
-  word-break: break-word;
+
+  /* 기타 */
+  word-break: break-word; /* 줄바꿈 */
 }
 
 .resultToastClose {
   position: absolute;
   top: 8px;
   right: 10px;
+
+  /* 배경 */
   border: none;
   background: transparent;
+
+  /* 글자 */
   font-size: 22px;
   line-height: 1;
+  color: #0000008c;
+
+  /* 커서 */
   cursor: pointer;
-  color: rgba(0, 0, 0, 0.55);
 }
 
 .resultToastMessage {
+  /* 배치 */
   margin-top: 6px;
+
+  /* 글자 */
   font-size: 13px;
-  color: rgba(0, 0, 0, 0.65);
+  color: #000000a6;
 }
