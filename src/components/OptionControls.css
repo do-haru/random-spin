@@ -68,8 +68,12 @@
 }
 
 .optionCountText {
+  /* 배치 */
+  display: inline-flex;
+  align-items: center;
+
   /* 크기 */
-  width: 34px;
+  width: auto;
 
   /* 글자 */
   font-size: 13px;
@@ -79,6 +83,7 @@
   text-align: center;
 
   /* 기타 */
+  white-space: nowrap; /* 줄 바꿈 */
   user-select: none; /* 드래그 방지 */
 }
 

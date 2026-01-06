@@ -6,6 +6,7 @@ import SpinControls from "./SpinControls";
 import { ROULETTE_RESULT_MESSAGES } from "../constants/rouletteMessages";
 
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 // Option 최대/최소 개수
 const MIN = 2;
@@ -13,15 +14,6 @@ const MAX = 8;
 
 // 기본 Option
 const DEFAULT_OPTIONS = Array.from({ length: MAX }, (_, i) => `${i + 1}`);
-
-// 결과 랜덤 메세지
-const RESULT_MESSAGES = [
-  "운명이 이걸 골랐어요!",
-  "오늘은 이 선택이 딱이에요 🙂",
-  "고민 끝! 이걸로 가죠.",
-  "랜덤의 신이 선택했어요.",
-  "이건 꽤 괜찮은 결과예요!",
-];
 
 // 회전 각도 -> 결과 인덱스 계산
 const getResultIndex = (rotationDeg, n) => {
@@ -31,6 +23,8 @@ const getResultIndex = (rotationDeg, n) => {
 };
 
 const RouletteContainer = () => {
+  const { t, i18n } = useTranslation();
+
   const [options, setOptions] = useState(DEFAULT_OPTIONS); // Option 배열
   const [optionCount, setOptionCount] = useState(6); // Option 개수
   const activeOptions = options.slice(0, optionCount); // 사용 중 Option 배열
@@ -94,10 +88,11 @@ const RouletteContainer = () => {
     if (resultIndex === null) return;
 
     const option = activeOptions[resultIndex] ?? "";
-    const message =
-      ROULETTE_RESULT_MESSAGES[
-        Math.floor(Math.random() * ROULETTE_RESULT_MESSAGES.length)
-      ];
+    const lang = (i18n.resolvedLanguage || i18n.language || "ko").slice(0, 2); // 'ko', 'en'
+    const messages =
+      ROULETTE_RESULT_MESSAGES[lang] ?? ROULETTE_RESULT_MESSAGES.ko;
+
+    const message = messages[Math.floor(Math.random() * messages.length)];
 
     setResult({ option, message });
     setShowResult(true);
@@ -126,7 +121,7 @@ const RouletteContainer = () => {
 
       {showResult && result && (
         <div className="resultToast">
-          <div className="resultToastTitle">결과</div>
+          <div className="resultToastTitle">{t("resultTitle")}</div>
 
           {/* 결과 옵션 */}
           <div className="resultToastValue">{result.option}</div>

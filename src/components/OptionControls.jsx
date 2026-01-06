@@ -1,5 +1,7 @@
 import "./OptionControls.css";
 
+import { useTranslation } from "react-i18next";
+
 const OptionControls = ({
   count,
   min = 2,
@@ -9,6 +11,8 @@ const OptionControls = ({
   onReset,
   disabled = false,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="OptionControls">
       <div className="optionCountControls">
@@ -20,7 +24,9 @@ const OptionControls = ({
         >
           -
         </button>
-        <span className="optionCountText">{count}개</span>
+        <span className="optionCountText">
+          {t("optionCountLabel", { count: count })}
+        </span>
         <button
           className="optionBtn"
           type="button"
@@ -37,7 +43,7 @@ const OptionControls = ({
         onClick={onReset}
         disabled={disabled}
       >
-        재설정
+        {t("reset")}
       </button>
     </div>
   );

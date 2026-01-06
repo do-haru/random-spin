@@ -1,6 +1,10 @@
 import "./SpinControls.css";
 
+import { useTranslation } from "react-i18next";
+
 const SpinControls = ({ onSpin, disabled }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="SpinControls">
       <button
@@ -9,7 +13,7 @@ const SpinControls = ({ onSpin, disabled }) => {
         onClick={onSpin}
         disabled={disabled}
       >
-        돌리기
+        {t("spin")}
       </button>
     </div>
   );
