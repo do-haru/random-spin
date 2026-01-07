@@ -16,13 +16,13 @@ const OFFSET_DEG = -90;
 // 부채꼴 색상
 const COLORS = [
   "#C32323", // Option 1 - 레드
-  "#FF8D28", // Option 2 - 오렌지
+  "#0088FF", // Option 2 - 블루
   "#FFCC00", // Option 3 - 옐로우
   "#34C759", // Option 4 - 그린
-  "#00C3D0", // Option 5 - 민트
-  "#0088FF", // Option 6 - 블루
-  "#6155F5", // Option 7 - 퍼플블루
-  "#FF2D55", // Option 8 - 핑크레드
+  "#FF8D28", // Option 5 - 오렌지
+  "#00C3D0", // Option 6 - 민트
+  "#FF2D55", // Option 7 - 핑크레드
+  "#6155F5", // Option 8 - 퍼플블루
 ];
 
 // 각도(deg) + 반지름을 (x,y)로 변환
