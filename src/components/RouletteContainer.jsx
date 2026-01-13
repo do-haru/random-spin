@@ -26,7 +26,7 @@ const RouletteContainer = () => {
   const { t, i18n } = useTranslation();
 
   const [options, setOptions] = useState(DEFAULT_OPTIONS); // Option 배열
-  const [optionCount, setOptionCount] = useState(6); // Option 개수
+  const [optionCount, setOptionCount] = useState(4); // Option 개수
   const activeOptions = options.slice(0, optionCount); // 사용 중 Option 배열
 
   const [rotationDeg, setRotationDeg] = useState(0); // 룰렛 회전 각도
@@ -77,7 +77,7 @@ const RouletteContainer = () => {
 
   // Option 개수 초기화
   const handleResetOptionCount = () => {
-    setOptionCount(6);
+    setOptionCount(4);
     setOptions(DEFAULT_OPTIONS);
     setRotationDeg(0);
   };
