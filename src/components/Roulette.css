@@ -8,7 +8,7 @@
 
 .roulettePointer {
   position: absolute;
-  top: 8px; /* 핵심: 룰렛 위로만 살짝 */
+  top: 7px; /* 핵심: 룰렛 위로만 살짝 */
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
@@ -22,7 +22,7 @@
   /* 배치 */
   display: block;
   padding-top: 15px;
-  padding-bottom: 5px;
+  padding-bottom: 6px;
 
   /* 기타 */
   user-select: none; /* 드래그 방지 */

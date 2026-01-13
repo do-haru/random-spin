@@ -10,7 +10,7 @@
 .spinBtn {
   /* 크기 */
   height: 36px;
-  padding: 0 18px;
+  padding: 0 20px;
 
   /* 배경 */
   border: none;
@@ -19,7 +19,7 @@
 
   /* 글자 */
   font: inherit;
-  font-size: 18px;
+  font-size: 20px;
 
   /* 커서 */
   cursor: pointer;
@@ -28,7 +28,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding-top: 2px;
+  padding-top: 1px;
 
   /* 기타 */
   user-select: none; /* 드래그 방지 */
