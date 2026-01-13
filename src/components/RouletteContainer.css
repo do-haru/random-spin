@@ -13,7 +13,7 @@
 .resultToast {
   /* 배치 */
   position: fixed;
-  top: 16px;
+  top: 35px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 9999;
