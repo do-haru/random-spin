@@ -2,6 +2,8 @@ import "./App.css";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
 
+import { Analytics } from "@vercel/analytics/next";
+
 function App() {
   return (
     <div className="App">
@@ -11,6 +13,7 @@ function App() {
       <footer className="AppFooter">
         <Footer />
       </footer>
+      <Analytics />
     </div>
   );
 }
